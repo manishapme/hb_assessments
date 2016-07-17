@@ -1,8 +1,4 @@
-"""List Assessment 
-
-Edit the functions until all of the doctests pass when
-you run this file.
-"""
+"""List Assessment Solution."""
 
 
 def all_odd(numbers):
@@ -16,12 +12,8 @@ def all_odd(numbers):
         >>> all_odd([2, -6, 8])
         []
     """
-    odds = []
-    for num in numbers:
-        if num % 2:
-            odds.append(num)
 
-    return odds
+    return [n for n in numbers if n % 2 != 0]
 
 
 def print_indices(items):
@@ -42,8 +34,14 @@ def print_indices(items):
         1 Jeep
         2 Volvo
     """
+
     for i in range(len(items)):
-        print str(i) + " " + items[i]
+        print i, items[i]
+
+    # Alternately, a bit nicer:
+    #
+    # for i, vehicle in enumerate(items):
+    #     print i, vehicle
 
 
 def foods_in_common(foods1, foods2):
@@ -73,11 +71,15 @@ def foods_in_common(foods1, foods2):
         []
 
     """
-    foods1 = set(foods1)
-    foods2 = set(foods2)
-    incommon = list(foods1.intersection(foods2))
 
-    return incommon
+    # Alternative solution
+    # in_common = []
+    # for f in foods1:
+    #     if f in foods2 and f not in in_common:
+    #         in_common.append(f)
+    # return in_common
+
+    return list(set(foods1) & set(foods2)).sort()
 
 
 def every_other_item(items):
@@ -93,14 +95,20 @@ def every_other_item(items):
        ... )
        ['you', 'are', 'good', 'at', 'code']
     """
-    i = 0
-    every_other_item = []
-    while i < len(items):
-        if i % 2 == 0:
-            every_other_item.append(items[i])
-        i +=1
 
-    return every_other_item
+    new_list = []
+
+    for i in range(len(items)):
+        if i % 2 == 0:
+            new_list.append(items[i])
+
+    return new_list
+
+    # Or, using enumerate:
+    # return [w for i, w in enumerate(items) if i % 2 == 0]
+
+    #Or, using slicing:
+    # return items[::2]
 
 
 def largest_n_items(items, n):
@@ -124,14 +132,22 @@ def largest_n_items(items, n):
         >>> largest_n_items([3, 3, 3, 2, 1], 2)
         [3, 3]
     """
+
     if n == 0:
         return []
 
-    # sorting the list in advance will ensure that we slice only the highest values
-    items.sort()
-    largest_n_items = items[len(items)-n: ]
+    # sort list ascending and return last `n`:
 
-    return largest_n_items
+    sorted_list = sorted(items)
+    return sorted_list[-n:]
+
+    # alternate:
+    # Sort list from largest to smallest and return first `n`:
+    # sorted_list = sorted(items, reverse=True)
+    # return sorted(sorted_list[:n])
+
+    #another alternative, which handles the n=0 case also:
+    # return sorted(items)[len(items)-n:]
 
 
 #####################################################################
@@ -145,3 +161,5 @@ if __name__ == "__main__":
     if not result.failed:
         print "ALL TESTS PASSED. GOOD WORK!"
     print
+
+
