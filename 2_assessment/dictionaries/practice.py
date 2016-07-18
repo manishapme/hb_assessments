@@ -31,8 +31,8 @@ def without_duplicates(words):
         >>> sorted(without_duplicates([111111, 2, 33333, 2]))
         [2, 33333, 111111]
     """
-
-    return []
+    # create a set which removes duplicates by it's nature
+    return set(words)
 
 
 def find_unique_common_items(items1, items2):
@@ -62,7 +62,8 @@ def find_unique_common_items(items1, items2):
         [2]
     """
 
-    return []
+    # convert lists to sets and return the intersection of the two
+    return set(items1) & set(items2)
 
 def get_sum_zero_pairs(numbers):
     """Given list of numbers, return list of pair summing to 0.
@@ -91,7 +92,15 @@ def get_sum_zero_pairs(numbers):
         [[-1, 1], [0, 0]]
     """
 
-    return []
+    numbers = sorted(numbers)
+    pairs_resulting_in_zero = []
+
+    # for each number in the list, we must check for the existence of it's opposite
+    # i.e. for -1, search for the existence of 1
+    # can be done by testing for (num * -1)
+    [pairs_resulting_in_zero.append([num, num * -1]) for num in numbers if (num * -1 in numbers) and (num <=0)]
+
+    return pairs_resulting_in_zero
 
 
 def top_chars(phrase):
@@ -118,8 +127,22 @@ def top_chars(phrase):
     Do not count spaces, but count all other characters.
 
     """
+    # create a dictionary to store the occurrence of each character
+    top_chars = {}
+    result = []
 
-    return []
+    # iterate through to build counts
+    for char in phrase.replace(" ", ""):
+        top_chars[char] = top_chars.get(char, 0) + 1
+
+    # find the highest value by grabbing the last value in a sorted list
+    highest = sorted(top_chars.values())[-1]
+
+    # iterate through dictionary again to find where the value matches
+    [result.append(key) for key, val in top_chars.items() if val == highest]
+
+
+    return result
 
 #####################################################################
 # You can ignore everything below this.

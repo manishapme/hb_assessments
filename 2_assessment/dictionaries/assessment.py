@@ -29,7 +29,12 @@ def count_words(phrase):
         {'Porcupine': 1, 'do.': 1, 'porcupine': 1, 'see,': 1}
     """
 
-    return {}
+    wordlist = {}
+    # iterate through phrase and set each word as a key
+    for word in phrase.split(" "):
+        wordlist[word] = wordlist.get(word, 0) + 1
+
+    return wordlist
 
 
 def get_melon_price(melon_name):
@@ -52,7 +57,15 @@ def get_melon_price(melon_name):
         'No price found'
     """
 
-    return 0
+    # store info in a dictionary
+    melons = { 
+        "Watermelon": 2.95,
+        "Cantaloupe": 2.50,
+        "Musk": 3.25,
+        "Christmas": 14.25, 
+    }
+
+    return melons.get(melon_name, "No price found")
 
 
 def word_length_sorted(words):
@@ -70,8 +83,27 @@ def word_length_sorted(words):
         >>> word_length_sorted(["ok", "an", "apple", "a", "day"])
         [(1, ['a']), (2, ['an', 'ok']), (3, ['day']), (5, ['apple'])]
     """
+    
+    words_by_length = {}
+    for word in words:
+        # create a dictionary where the length of word is the key
+        key = len(word)
+        # and value is the list of words of that length
+        words_by_length[key] = words_by_length.get(key, [])
+        words_by_length[key].append(word)
+        # sort list of words
+        words_by_length[key] = sorted(words_by_length[key])
 
-    return []
+    # [ words_by_length.get(len(word), []).append(word) for word in words ]
+
+    result = []
+    # sort the keys in the dictionary and loop through 
+    for key in sorted(words_by_length.keys()):
+        # append a tuple to the result list for each key
+        result.append((key, words_by_length[key]))
+
+
+    return result
 
 
 def translate_to_pirate_talk(phrase):
@@ -113,7 +145,34 @@ def translate_to_pirate_talk(phrase):
         'me swabbie be not a man!'
     """
 
-    return ""
+    #normalize data into a dictionary
+    pirate_dictionary = {
+        "sir": "matey",
+        "hotel": "fleabag inn",
+        "student": "swabbie",
+        "man": "matey",
+        "professor": "foul blaggart",
+        "restaurant": "galley",
+        "your": "yer",
+        "excuse": "arr",
+        "students": "swabbies",
+        "are": "be",
+        "restroom": "head",
+        "my": "me",
+        "is": "be",
+    }
+
+    newphrase = []
+
+    # iterate through the phrase as a list
+    for word in phrase.split():
+        # substitute pirate words as needed
+        if word in pirate_dictionary:
+            word = pirate_dictionary[word]
+        # append every word back to newphrase
+        newphrase.append(word)
+    # convert newphrase back to string at end
+    return " ".join(newphrase)
 
 
 def kids_game(names):
@@ -153,8 +212,40 @@ def kids_game(names):
     a dictionary (with the super-fast lookup they provide) can help;
     good solutions here will definitely require a dictionary.
     """
+    #we know the first word in result is always the first name passed
+    result = [names[0]]
 
-    return []
+    # create a dictionary using the first letter of each word as a key
+    names_by_first_letter = {}
+
+    # exclude the first name
+    for name in names[1:]:
+        names_by_first_letter[name[0]] = names_by_first_letter.get(name[0], [])
+        #note that the names are appended to the list in the order they appear
+        names_by_first_letter[name[0]].append(name)
+
+    # now iterate through the names list a play the game
+    i = 0
+    # we can never has a result longer than the list passed
+    while i < len(names):
+        try:
+            # Use the last letter of that word to look for the next word.
+            last_letter = result[-1][-1]
+            # find the *first* word starting with that letter
+            next_word = names_by_first_letter[last_letter][0]
+
+            #ensure the word hasn't been used before
+            if next_word not in result:
+                 result.append(next_word)
+                 # after appending it to result, remove from dictionary
+                 # ensuring another word will get chosen next time
+                 del names_by_first_letter[last_letter][0]
+        except:
+            pass
+        i += 1
+
+
+    return result
 
 #####################################################################
 # You can ignore everything below this.
