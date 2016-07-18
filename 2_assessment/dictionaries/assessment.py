@@ -240,7 +240,7 @@ def kids_game(names):
                  # after appending it to result, remove from dictionary
                  # ensuring another word will get chosen next time
                  del names_by_first_letter[last_letter][0]
-        except:
+        except IndexError:
             pass
         i += 1
 
