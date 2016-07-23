@@ -30,7 +30,8 @@ def count_words(phrase):
     """
 
     wordlist = {}
-    # iterate through phrase and set each word as a key
+    # iterate through phrase, setting each word as a key
+    # incrementing the value of the word each time to get count
     for word in phrase.split(" "):
         wordlist[word] = wordlist.get(word, 0) + 1
 
@@ -164,12 +165,11 @@ def translate_to_pirate_talk(phrase):
 
     newphrase = []
 
-    # iterate through the phrase as a list
     for word in phrase.split():
         # substitute pirate words as needed
         if word in pirate_dictionary:
             word = pirate_dictionary[word]
-        # append every word back to newphrase
+
         newphrase.append(word)
     # convert newphrase back to string at end
     return " ".join(newphrase)
@@ -224,7 +224,7 @@ def kids_game(names):
         #note that the names are appended to the list in the order they appear
         names_by_first_letter[name[0]].append(name)
 
-    # now iterate through the names list a play the game
+    # play game
     i = 0
     # we can never has a result longer than the list passed
     while i < len(names):

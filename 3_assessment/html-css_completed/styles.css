@@ -1,0 +1,23 @@
+body{
+    margin: 0 2em;
+    font-family: Myriad, sans-serif;
+}
+
+input{
+    background-color: Yellow;
+    margin-top: 1em;
+}
+
+select{
+    margin-top: 1em;
+}
+
+#field-lastname{
+    font-weight: Bold;
+}
+
+.instruction{
+    border: 1px Solid Gray;
+    padding: 1em;
+}
+

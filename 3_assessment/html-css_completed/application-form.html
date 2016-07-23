@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+    <title>Skills-HTML-CSS</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+
+<!-- your html goes here -->
+<h1>Apply for a job</h1>
+<p class="instruction">Please complete the form below and submit in order to be considered for one of the available positions.
+<form action="/application" method="POST">
+    <label for="field-firstname">First Name</label>
+        <input type="text" name="firstname" id="field-firstname"></input><br>
+    <label for="field-lastname">Last Name</label>
+        <input type="text" name="lastname" id="field-lastname"></input><br>
+    <label for="field-salary">Salary Requirement</label>
+        <input type="text" name="salary" id="field-salary"></input><br>
+    <label for="selected-job">Select which job are you applying for</label>:
+    <select name="job" id="selected-job">
+        <option value="Software Engineer">Software Engineer</option>
+        <option value="QA Engineer">QA Engineer</option>
+        <option value="Product Manager">Product Manager</option>
+    </select><br>
+    <input type="submit" name="submit" value="Submit">
+</form>
+</body>
+</html>
