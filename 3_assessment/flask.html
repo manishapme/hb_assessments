@@ -1,0 +1,95 @@
+
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Skills: Flask</title>
+
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css"/>
+    <link rel="stylesheet" href="_static/handouts-sphinx.css"/>
+
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,400italic,600italic,700italic|Inconsolata:400,700'
+          rel='stylesheet' type='text/css'>
+</head>
+<body>
+<div id="page-wrapper">
+    <div id="page-sidebar">
+        <header>
+            <p class="project">Hackbright Fellowship Summer 2016</p>
+
+            <p class="title">Skills: Flask</p>
+
+            <p class="backlink"><a href=""> &laquo; Back to Fellowship
+                Homepage</a></p>
+
+        </header>
+        <div id="toc">
+            <ul>
+<li><a class="reference internal" href="#">Skills: Flask</a><ul>
+<li><a class="reference internal" href="#setup">Setup</a></li>
+<li><a class="reference internal" href="#directions">Directions</a><ul>
+<li><a class="reference internal" href="#part-i">Part I</a></li>
+<li><a class="reference internal" href="#part-ii">Part II</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+    </div>
+    <div id="page-content">
+        
+  <div class="section" id="skills-flask">
+<h1>Skills: Flask</h1>
+<div class="section" id="setup">
+<h2>Setup</h2>
+<p>First, create a virtual environment and activate it.</p>
+<p>Reminder: in Windows, make sure you use the command &#8216;virtualenv env &#8211;always-copy&#8217; to create a new virtual environment.</p>
+<p>We&#8217;ve included the requirements for this project in <cite>requirements.txt</cite>. Install
+them.</p>
+</div>
+<div class="section" id="directions">
+<h2>Directions</h2>
+<div class="section" id="part-i">
+<h3>Part I</h3>
+<p>Write a small Flask app in <cite>application.py</cite> that does the following:</p>
+<ul>
+<li><p class="first">Serves the the template <cite>application-form.html</cite> at the route <cite>/application-form</cite>.
+Use the <cite>application-form</cite> made in <cite>skills-html-css</cite>.</p>
+</li>
+<li><p class="first">Handles submission of a form in <cite>application-form.html</cite> to the route <cite>/application</cite>.</p>
+<ul>
+<li><p class="first">Gets the first name, last name, salary, and job title from the
+form submission.</p>
+</li>
+<li><p class="first">Returns a response that acknowledges their application. This
+should repeat their name, title, and salary requirement, like:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>Thank you, Jessica McHackbright, for applying to be a QA Engineer. Your
+minimum salary requirement is 89000 dollars.
+</pre></div>
+</div>
+<p>You should do this by using a Jinja template.</p>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="part-ii">
+<h3>Part II</h3>
+<p>Create a new template called <cite>base.html</cite>. Have your other two templates
+inherit from <cite>base.html</cite> using Jinja&#8217;s <code class="docutils literal"><span class="pre">{%</span> <span class="pre">extends</span> <span class="pre">%}</span></code> and <code class="docutils literal"><span class="pre">{%</span> <span class="pre">block</span> <span class="pre">%}</span></code>
+syntax.</p>
+</div>
+</div>
+</div>
+
+
+
+    </div>
+</div>
+</body>
+</html>
