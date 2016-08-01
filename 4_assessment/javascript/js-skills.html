@@ -514,7 +514,8 @@
 <p>You must calculate the prime numbers; you cannot just type them in.</p>
 
 <fieldset>
-  <div id="prime-box-area"><!-- Your prime boxes should appear here! --></div>
+  <div id="prime-box-area">
+  </div>
   <input type="button" id="make-prime-boxes" value="Button">
 </fieldset>
 
@@ -523,7 +524,37 @@
 
     var PRIME_COLORS = ['orange', 'midnightblue', 'darkgoldenrod', 'green', 'purple'];
 
-  // put the rest of your code here
+    function showPrimes(){
+      var primes = [];
+      var prime = 2;
+      var isPrime = 0;
+      var new_div = "";
+
+      //continue checking for primes until we reach 5
+      while (primes.length < 5){
+        isPrime = 1;
+
+        for ( var i = prime-1; (i >= 1); i--){
+          if ( (prime % i === 0) && (i !== 1)) {
+              //evenly divisible by something other than 1, not prime
+              isPrime = 0;
+              break;
+          }
+        }
+        if (isPrime){ 
+          primes.push(prime);
+          new_div = "<div class=\"prime-box\" style=\"background-color: " + 
+                     PRIME_COLORS[primes.length -1] + 
+                     "\">"+ 
+                     prime +
+                     "</div>"
+          $("#prime-box-area").append(new_div);
+        }
+        prime ++;
+      }
+    }
+
+    $("#make-prime-boxes").click(showPrimes);
 </script>
 
 
