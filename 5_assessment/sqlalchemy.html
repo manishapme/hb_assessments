@@ -1,0 +1,167 @@
+
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Skills SQLAlchemy</title>
+
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css"/>
+    <link rel="stylesheet" href="_static/handouts-sphinx.css"/>
+
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,400italic,600italic,700italic|Inconsolata:400,700'
+          rel='stylesheet' type='text/css'>
+</head>
+<body>
+<div id="page-wrapper">
+    <div id="page-sidebar">
+        <header>
+            <p class="project">Hackbright Fellowship Summer 2016</p>
+
+            <p class="title">Skills SQLAlchemy</p>
+
+            <p class="backlink"><a href=""> &laquo; Back to Fellowship
+                Homepage</a></p>
+
+        </header>
+        <div id="toc">
+            <ul>
+<li><a class="reference internal" href="#">Skills SQLAlchemy</a><ul>
+<li><a class="reference internal" href="#setup">Setup</a></li>
+<li><a class="reference internal" href="#part-1-fill-in-model-py">Part 1: Fill in <cite>model.py</cite></a><ul>
+<li><a class="reference internal" href="#helper-commands">Helper commands</a></li>
+<li><a class="reference internal" href="#hint">Hint</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#part-2-sqlalchemy-queries">Part 2: SQLAlchemy Queries</a><ul>
+<li><a class="reference internal" href="#id1">Helper commands</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#part-2-5-discussion-questions">Part 2.5: Discussion questions</a></li>
+<li><a class="reference internal" href="#part-3">Part 3</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+    </div>
+    <div id="page-content">
+        
+  <div class="section" id="skills-sqlalchemy">
+<h1>Skills SQLAlchemy</h1>
+<div class="section" id="setup">
+<h2>Setup</h2>
+<p>Make a virtual environment, and install the requirements.</p>
+<pre class="console literal-block">
+$ <span class="cmd">virtualenv env</span>
+$ <span class="cmd">source env/bin/activate</span>
+$ <span class="cmd">pip install -r requirements.txt</span>
+</pre>
+<p>Reminder: in Windows, use the command &#8216;virtualenv env &#8211;always-copy&#8217; to create a virtual environment.</p>
+<pre class="console literal-block">
+$ <span class="cmd">createdb cars</span>
+$ <span class="cmd">psql cars &lt; database.sql</span>
+</pre>
+</div>
+<div class="section" id="part-1-fill-in-model-py">
+<h2>Part 1: Fill in <cite>model.py</cite></h2>
+<p>Using SQLAlchemy, fill in the columns for the classes already
+defined in <cite>model.py</cite>. The column names and datatypes should be the
+same as those in the <cite>cars</cite> database. (Since you already have tables, there
+is no need to run the command
+<code class="docutils literal"><span class="pre">db.create_all()</span></code> at any point during this assignment.)</p>
+<p>Be sure to include a <strong>relationship</strong> between the
+two tables, using a foreign keys between the two tables.</p>
+<div class="section" id="helper-commands">
+<h3>Helper commands</h3>
+<ul class="simple">
+<li>To open the database: <code class="docutils literal"><span class="pre">psql</span> <span class="pre">cars</span></code></li>
+<li>To see a list of the tables: <code class="docutils literal"><span class="pre">\dt</span></code> (must be inside <cite>psql</cite>)</li>
+<li>To inspect the schema for each table: <code class="docutils literal"><span class="pre">\d</span> <span class="pre">TABLENAME</span></code> (must be inside <cite>psql</cite>)</li>
+</ul>
+</div>
+<div class="section" id="hint">
+<h3>Hint</h3>
+<p>You will know if you have the right answer if you can run the
+interactive python terminal in <cite>model.py</cite> and the only output
+you see is <code class="docutils literal"><span class="pre">Connected</span> <span class="pre">to</span> <span class="pre">DB</span></code>, i.e.</p>
+<pre class="console literal-block">
+$ <span class="cmd">python -i model.py</span>
+Connected to DB.
+&gt;&gt;&gt;
+</pre>
+<p>If you have the incorrect answer, you&#8217;ll see something like this:</p>
+<pre class="console literal-block">
+$ <span class="cmd">python -i model.py</span>
+...
+sqlalchemy.exc.ArgumentError: Mapper Mapper|Model|models could
+not assemble any primary key columns for mapped table 'models'
+</pre>
+</div>
+</div>
+<div class="section" id="part-2-sqlalchemy-queries">
+<h2>Part 2: SQLAlchemy Queries</h2>
+<p>Please compose the following queries, using an interactive python terminal
+to test them as you go along. Add your SQLAlchemy queries to the file called
+<cite>query.py</cite>.</p>
+<ol class="arabic simple">
+<li>Get the brand with the <code class="docutils literal"><span class="pre">id</span></code> of 8.<ul>
+<li>Use SQLAlchemy&#8217;s <code class="docutils literal"><span class="pre">.get()</span></code>, not <code class="docutils literal"><span class="pre">.filter()</span></code> nor <code class="docutils literal"><span class="pre">.filter_by()</span></code>.</li>
+</ul>
+</li>
+<li>Get all models with the name Corvette and the <strong>brand_name</strong> Chevrolet.</li>
+<li>Get all models that are older than 1960.</li>
+<li>Get all brands that were founded after 1920.</li>
+<li>Get all models with names that begin with &#8220;Cor.&#8221;</li>
+<li>Get all brands that were founded in 1903 and that are not yet discontinued.</li>
+<li>Get all brands that are either 1) discontinued (at any time) or 2) founded before 1950.</li>
+<li>Get any model whose brand_name is not Chevrolet.</li>
+</ol>
+<p>Fill in the stubbed out functions found in <cite>query.py</cite>. Important: You may only
+run a single query in each function.</p>
+<ol class="arabic simple">
+<li>Fill in <code class="docutils literal"><span class="pre">get_model_info</span></code> so that it takes a year as input, and
+<em>prints</em> each model&#8217;s <code class="docutils literal"><span class="pre">name</span></code>, <code class="docutils literal"><span class="pre">brand_name</span></code> and brand <code class="docutils literal"><span class="pre">headquarters</span></code>
+for each car model from that year.</li>
+<li>Fill in <code class="docutils literal"><span class="pre">get_brands_summary</span></code> so that it takes nothing as input and
+prints each brand name, and all of that brand&#8217;s models. (Feel free to format
+with newlines (<code class="docutils literal"><span class="pre">\n</span></code>) and/or tabs (<code class="docutils literal"><span class="pre">\t</span></code>) to create helpful and readable output.)</li>
+</ol>
+<div class="section" id="id1">
+<h3>Helper commands</h3>
+<ul class="simple">
+<li>To open an interactive terminal in order to test queries: <code class="docutils literal"><span class="pre">python</span> <span class="pre">-i</span> <span class="pre">model.py</span></code></li>
+</ul>
+</div>
+</div>
+<div class="section" id="part-2-5-discussion-questions">
+<h2>Part 2.5: Discussion questions</h2>
+<p>Please add your answers as comments in <cite>query.py</cite>.</p>
+<ol class="arabic simple">
+<li>What is the returned value and datatype of <code class="docutils literal"><span class="pre">Brand.query.filter_by(name='Ford')</span></code>?</li>
+<li>In your own words, what is an association table, and what <em>type</em> of relationship
+(many to one, many to many, one to one, etc.) does an association table manage?</li>
+</ol>
+</div>
+<div class="section" id="part-3">
+<h2>Part 3</h2>
+<p>Please compose the following python functions and add them to <cite>query.py</cite>.</p>
+<ol class="arabic simple">
+<li>Design a function in python that takes in any string as parameter, and returns
+<em>a list of objects</em> that are brands whose name <em>contains or is equal to</em> the input
+string.</li>
+<li>Design a function that takes in a start year and end year (two integers), and
+returns a <strong>list of objects</strong> that are models with years that fall between
+the start year (inclusive) and end year (exclusive).</li>
+</ol>
+</div>
+</div>
+
+
+
+    </div>
+</div>
+</body>
+</html>
