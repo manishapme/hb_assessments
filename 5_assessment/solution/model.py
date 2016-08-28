@@ -1,15 +1,11 @@
-"""Models and database functions for cars db."""
+"""Models and database functions for cars database."""
 
 from flask_sqlalchemy import SQLAlchemy
-
-# Here's where we create the idea of our database. We're getting this through
-# the Flask-SQLAlchemy library. On db, we can find the `session`
-# object, where we do most of our interactions (like committing, etc.)
 
 db = SQLAlchemy()
 
 
-##############################################################################
+# -------------------------------------------------------------------
 # Part 1: Compose ORM
 
 class Model(db.Model):
@@ -17,12 +13,12 @@ class Model(db.Model):
 
     __tablename__ = "models"
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    year = db.Column(db.Integer, nullable=False)
-    brand_name = db.Column(db.String(50), db.ForeignKey("brands.name"))
-    name = db.Column(db.String(50), nullable=False)
+    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    name = db.Column(db.String(50), nullable=True)
+    brand_name = db.Column(db.String(50), db.ForeignKey('brands.name'), nullable=True)
+    year = db.Column(db.Integer, nullable=True)
 
-    brand = db.relationship("Brand", backref=db.backref("model", order_by=name)) 
+    brand = db.relationship("Brand", backref="models")
 
 
 class Brand(db.Model):
@@ -30,19 +26,17 @@ class Brand(db.Model):
 
     __tablename__ = "brands"
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    name = db.Column(db.String(50), nullable=False)
-    founded = db.Column(db.Integer)
-    headquarters = db.Column(db.String(50))
-    discontinued = db.Column(db.Integer)
+    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    name = db.Column(db.String(50), nullable=True)
+    founded = db.Column(db.Integer, nullable=True)
+    discontinued = db.Column(db.Integer, nullable=True)
+    headquarters = db.Column(db.String(50), nullable=True)
 
 
-
-# End Part 1
-
-
-##############################################################################
+# End part 1
+# -------------------------------------------------------------------
 # Helper functions
+
 
 def init_app():
     # So that we can use Flask-SQLAlchemy, we'll make a Flask app

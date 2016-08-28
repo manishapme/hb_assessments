@@ -58,7 +58,6 @@ def get_model_info(year):
         else:
             print "Model name: {}\nBrand name: {}\nHeadquarters: n/a\n".format(model.name, model.brand_name)
 
-    pass
 
 
 def get_brands_summary():
@@ -71,7 +70,6 @@ def get_brands_summary():
     for model in result:
         print "{}, {}".format(model.brand_name, model.name )
 
-    pass
 
 # -------------------------------------------------------------------
 # Part 2.5: Discussion Questions (Include your answers as comments.)
