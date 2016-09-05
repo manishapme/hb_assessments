@@ -1,0 +1,75 @@
+Recursion
+
+In your own words, what is Recursion?
+    A function which calls itself. It must have an exit condition.
+Why is it necessary to have a Base Case?
+    So you don't get stuck in an infinite loop or lock up all the memory in your system.
+
+Graphs
+What is a Graph?
+    Like a tree it is composed of nodes which point to other nodes.
+How is a Graph different from a Tree?
+    Nodes can point to more than one node and have multiple parents. These are loops/cycles.
+Give an example of somthing that would be good to model with a Graph.
+    A network such as that described by LinkedIn.
+
+    Futurefarmers made a piece that showed all of the people who sat on corporate boards and how they related to each other when someone sat on more than one board.
+
+    Instructional diagrams for building something like a shed where you have several separate tasks to complete before assembling a final product.
+
+
+Fill in the runtimes for the following actions for the table below:
+
+Data Structure                  Index   Search  Add-R   Add-L   Pop-L   Pop-R
+Python List (Array)             O(1)    O(n)    O(1)    O(n)    O(n)    O(1)
+Linked List                     O(n)    O(n)    O(n)    O(1)    O(1)    O(n)   ***assumes tracking head only
+Doubly-Linked List              O(n)    O(n)    O(1)    O(1)    O(1)    O(1)
+Queue (as Array)                X       X       O(1)    X       O(n)    X
+Queue (as LL or DLL)            X       X       O(1)    X       O(1)    X
+Stack (as Array, LL, or DLL)    X       X       O(1)    X       X       O(1) 
+Deque (as DLL)                  X       X       O(1)    O(1)    O(1)    O(1)     
+
+
+
+
+
+Data Structure          Get     Add     Delete  Iterate Memory
+Dictionary (Hash Map)   O(1)    O(1)    O(1)    O(n)    medium
+Set (Hash Map)          O(1)    O(1)    O(1)    O(n)    medium                   
+Binary Search Tree      O(log n)O(n^2)  O(n^2)  O(n)    a little            
+Tree                    O(n)    O(1)    O(1)    O(n)    a little    
+
+NOTE: Don't understand why iterating is O(1). It's only O(1) if we're only moving one step. Are we only moving one step, not walking the whole tree?
+
+
+
+Sorting
+
+Describe in words how the Bubble Sort algorithm works.
+    The biggest value always bubbles up to the right. 
+    So always starting with first item in list
+    Compare it to next item in list.
+    If it is > than item being compared to, swap positions with that item.
+    Keep checking it against every index position
+    Since you know the largest item is at the end, each loop, you can reduce the length of items being checked against by 1.
+
+Describe in words how the Merge Sort algorithm works.
+    You keep dividing the list of items to be sorted by half.
+    Do this until you arrive at a bunch of lists that only contain one item (one item is always sorted)
+    Then start recombining the individual lists.
+    Create a new list by checking the 1st value of each list, pop of the lowest value, and append to a new list
+    Return the list to the the calling function.
+    Goes down than back up each individual branch of the sort/tree
+
+Describe in words how the Quick Sort algorithm works.
+    No idea. Didn't understand it all from the lecture.
+
+Git Branching
+
+Give an instance when you would use git branching.
+    When I want to work on a feature in a multiperson team. Allows me to make changes without interfering with other peoples work.
+
+What is a pull request?
+    After I have made changes I am confident about and pushed them to my branch on Github, I can ask the gatekeeper to merge my change into the master branch.
+
+    
